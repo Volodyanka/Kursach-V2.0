@@ -14,8 +14,7 @@
                         HorizontalAlignment="Left"
                         Height="300"
                         Margin="10,10,0,0"
-                        VerticalAlignment="Top"
-                                                                        
+                        VerticalAlignment="Top"                                         
                         Width="300"/>
         <TextBox Name="txtNote"
                     HorizontalAlignment="Left"

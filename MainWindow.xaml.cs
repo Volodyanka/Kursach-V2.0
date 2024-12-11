@@ -1,9 +1,16 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Data.SQLite;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using пробник.Commands;
 
 namespace CalendarWithNotes
 {
@@ -11,11 +18,19 @@ namespace CalendarWithNotes
     {
         private Dictionary<DateTime, string> notes = new Dictionary<DateTime, string>();
         private const string connectionString = "Data Source=notes.db;Version=3;";
+        public ApplicationContext db = new ApplicationContext();
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeDatabase();
+            db.Database.EnsureCreated();
+        }
+
+        public class notes1 : Property
+        {
+            private int id;
+            private string note;
         }
 
         private void InitializeDatabase()
