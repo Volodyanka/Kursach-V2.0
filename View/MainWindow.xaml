@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:пробник"
         mc:Ignorable="d"
-        Title="Список дел" Height="450" Width="800">
-  
+        Title="Список дел" Height="450" Width="800"
+        ResizeMode="NoResize">
+
     <Window.Resources>
-        
+
         <ControlTemplate x:Key="CalendarItemTemplate1" TargetType="{x:Type CalendarItem}">
             <ControlTemplate.Resources>
                 <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
@@ -325,38 +326,42 @@
     </Window.Resources>
 
     <Grid>
-        <TextBox Name="txtNote"
-    HorizontalAlignment="Left"
-         Height="23"
-         Margin="325,10,0,0"
-         TextWrapping="Wrap"
-         VerticalAlignment="Top"
-         Width="455"/>
-        <TextBox Name="txtNote1"
-    HorizontalAlignment="Left"
-        Height="100"
-        Margin="325,50,0,0"
-        TextWrapping="Wrap"
-        VerticalAlignment="Top"
-        Width="455" TextChanged="txtNote1_TextChanged"/>
-        <Button Content="Add Note"
-    HorizontalAlignment="Left"
-        Margin="325,170,0,0"
-        VerticalAlignment="Top"
-        Width="120"
-        Background="#ef233c"
-        Click="AddNote_Click"/>
-        <Button Content="Delete Note"
-    HorizontalAlignment="Left"
-        Margin="450,170,0,0"
-        Background="#ef233c"
-        VerticalAlignment="Top"
-        Width="120"
-        Click="DeleteNote_Click"/>
+
+        <ListView ItemsSource="{Binding Notes}" SelectedItem="{Binding SelectedNote}" 
+                  Margin="325,10,20,217" Width="455">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Содержимое" DisplayMemberBinding="{Binding Content}" Width="300"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                                    Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Add Note" HorizontalAlignment="Left"
+                Margin="325,237,0,0"
+                VerticalAlignment="Top"
+                Width="120"
+                Background="#ef233c"
+                Command="{Binding AddNote}"/>
+
+        <Button Content="Delete Note" HorizontalAlignment="Left"
+                Margin="473,237,0,0" Background="#ef233c"
+                VerticalAlignment="Top" Width="120"
+                Command="{Binding DeleteNote}"/>
+
+        <Button Content="Edit Note" HorizontalAlignment="Left"
+                Margin="628,237,0,0" Background="#ef233c"
+                VerticalAlignment="Top" Width="120"
+                Command="{Binding EditNote}"/>
+
         <Viewbox Stretch="Uniform" HorizontalAlignment="Left"  Margin="1,1,1,1">
-            <Calendar CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}" Height="300" Width="190" />
+            <Calendar CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}"
+                      Style="{DynamicResource CalendarStyle1}"
+                      Height="300" Width="190" x:Name="calendar"
+                      SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
         </Viewbox>
     </Grid>
 
-    
+
 </Window>

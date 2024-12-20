@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace пробник
 {
-    internal class calendar_SelectedDatesChanged
+    public class calendar_SelectedDatesChanged
     {
+
     }
 }

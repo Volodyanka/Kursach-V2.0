@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SQLite;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using пробник;
+using пробник.ViewModel;
 
 
 namespace пробник
@@ -17,22 +19,15 @@ namespace пробник
         public MainWindow ()
         {
             InitializeComponent ();
-            DataContext = new MainViewModel();
+            DataContext = new MainVM();
         }
 
-        private void AddNote_Click(object sender, RoutedEventArgs e)
+        private void Calendar_SelectedDatesChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
-        }
-
-        private void DeleteNote_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void txtNote1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            if (DataContext is MainVM viewModel)
+            {
+                viewModel.SelectedDate = calendar.SelectedDate ?? DateTime.Now; // Устанавливаем выбранную дату в ViewModel
+            }
         }
     }
 

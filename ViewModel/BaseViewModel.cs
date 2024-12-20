@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using пробник.Commands;
 
-namespace пробник
+namespace пробник.ViewModel
 {
-     public class BD
+    public class BaseViewModel : Property
     {
-        public int ID { get; set; }
-        public string? Content { get; set; }
+
     }
 }
